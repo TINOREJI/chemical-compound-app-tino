@@ -1,51 +1,27 @@
-<mat-sidenav-container class="sidenav-container">
-  <!-- Mobile Sidenav (Left Menu) -->
-  <mat-sidenav #sidenav mode="over" position="start" class="mobile-nav">
-    <nav class="sidenav-nav">
-      <a mat-button routerLink="/" class="nav-link" (click)="sidenav.close()" aria-label="Home">
-        <mat-icon>home</mat-icon>
-        <span>Home</span>
+<mat-toolbar color="primary" class="custom-header">
+  <a routerLink="/" class="title" aria-label="Home">
+    <span>Chemical Compounds</span>
+  </a>
+
+  <!-- Navigation Links-->
+  <div class="main-nav-container">
+    <nav class="main-nav">
+      <a mat-button routerLink="/" class="nav-link" aria-label="Home">
+        <mat-icon class="nav-icon">home</mat-icon>
+        <span class="nav-text desktop-only">Home</span>
       </a>
-      <a mat-button routerLink="/create" class="nav-link" (click)="sidenav.close()" aria-label="Add Compound">
-        <mat-icon>add</mat-icon>
-        <span>Add Compound</span>
-      </a>
-      <a mat-button routerLink="/login" class="nav-link" (click)="sidenav.close()" aria-label="Login">
-        <mat-icon>login</mat-icon>
-        <span>Login</span>
+      <a mat-button routerLink="/edit" class="nav-link" aria-label="Add Compound">
+        <mat-icon class="nav-icon">add</mat-icon>
+        <span class="nav-text desktop-only">Add Compound</span>
       </a>
     </nav>
-  </mat-sidenav>
+  </div>
 
-  <!-- Toolbar -->
-  <mat-sidenav-content>
-    <mat-toolbar color="primary" class="custom-header">
-      <a routerLink="/" class="title" aria-label="Home">
-        <mat-icon class="menu-icon mobile-only" (click)="sidenav.toggle()">menu</mat-icon>
-        <span>Chemical Compounds</span>
-      </a>
+  <span class="spacer"></span>
 
-      <!-- Centered Navigation (Desktop) -->
-      <div class="main-nav-container desktop-only">
-        <nav class="main-nav">
-          <a mat-button routerLink="/" class="nav-link" aria-label="Home">
-            <mat-icon>home</mat-icon>
-            <span>Home</span>
-          </a>
-          <a mat-button routerLink="/edit" class="nav-link" aria-label="Add Compound">
-            <mat-icon>add</mat-icon>
-            <span>Add Compound</span>
-          </a>
-        </nav>
-      </div>
+  <!-- Login Icon -->
+  <a mat-icon-button routerLink="/login" class="login-icon" aria-label="Login">
+    <mat-icon>login</mat-icon>
+  </a>
+</mat-toolbar>
 
-      <!-- Spacer -->
-      <span class="spacer"></span>
-
-      <!-- Login Icon -->
-      <a mat-icon-button routerLink="/login" class="login-icon desktop-only" aria-label="Login">
-        <mat-icon>login</mat-icon>
-      </a>
-    </mat-toolbar>
-  </mat-sidenav-content>
-</mat-sidenav-container>

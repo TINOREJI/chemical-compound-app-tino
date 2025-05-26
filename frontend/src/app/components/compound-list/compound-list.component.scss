@@ -17,7 +17,7 @@ $blue-palette: (
     50: #000,
     100: #000,
     200: #000,
-    0: #000,
+    300: #000,
     400: #fff,
     500: #fff,
     600: #fff,
@@ -43,6 +43,88 @@ $blue-palette: (
     text-align: center;
     margin: 24px 0;
   }
+
+  .controls-container {
+  display: flex;
+  align-items: center; // Vertically center the child elements
+  gap: 16px; // Add spacing between search and sort containers
+  margin-bottom: 20px; // Optional: spacing below the controls
+  flex-wrap: wrap; // Allow wrapping on very small screens if needed
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    flex: 1; // Allow search to take up available space
+    min-width: 200px; // Ensure it doesn't shrink too much
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .search-icon {
+      color: #757575;
+      margin-right: 8px;
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      padding: 4px 0;
+    }
+  }
+
+  .sort-container {
+    display: flex;
+    align-items: center;
+    min-width: 150px; // Ensure it doesn't shrink too much
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .sort-label {
+      color: #757575;
+      font-size: 0.9rem;
+      margin-right: 8px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .sort-dropdown {
+      display: flex;
+      align-items: center;
+      flex: 1;
+
+      .sort-select {
+        flex: 1;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.9rem;
+        border: none;
+        outline: none;
+        background: transparent;
+      }
+
+      .sort-arrow {
+        color: #757575;
+        margin-left: 4px;
+      }
+    }
+  }
+
+  // Responsive adjustment: stack on very small screens if needed
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+
+    .search-container, .sort-container {
+      width: 100%;
+    }
+  }
+}
+
 
   .loading {
     display: flex;
@@ -92,7 +174,7 @@ $blue-palette: (
       .compound-image {
         width: 100%;
         height: 100%;
-        object-fit:contain;
+        object-fit: contain;
         border-radius: 4px 4px 0 0;
         border-bottom: 3px solid #e0e0e0;
       }
@@ -162,43 +244,6 @@ $blue-palette: (
     font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: center;
-
-    /*::ng-deep .mat-paginator-container {
-      justify-content: center;
-      min-height: 40px;
-    }
-
-    ::ng-deep .mat-paginator-page-size {
-      display: none !important;
-    }
-
-    ::ng-deep .mat-paginator-range-label {
-      font-size: 1rem;
-      color: map-get($blue-palette, 900);
-      margin: 0 16px;
-    }
-
-    ::ng-deep .mat-paginator-navigation {
-      color: map-get($blue-palette, 600);
-      font-size: 1.2rem;
-      padding: 0 8px;
-  
-      &:hover {
-        color: map-get($blue-palette, 700);
-        background: #f0f4f8;
-        border-radius: 4px;
-      }
-    }
-
-    ::ng-deep .mat-paginator-navigation-disabled {
-      color: #ccc;
-      cursor: not-allowed;
-    }
-
-    ::ng-deep .mat-paginator-navigation-first,
-    ::ng-deep .mat-paginator-navigation-last {
-      font-size: 1.2rem;
-    }*/
   }
 
   @media only screen and (max-width: 767px) {
@@ -208,6 +253,20 @@ $blue-palette: (
     .page-title {
       font-size: 1.6rem;
       margin: 20px 0;
+    }
+
+    .controls-container {
+      flex-direction: column;
+      gap: 16px;
+      margin: 0 12px 20px;
+
+      .search-container, .sort-container {
+        min-width: 100%;
+
+        .search-input, .sort-select {
+          padding: 10px 16px 10px 36px;
+        }
+      }
     }
 
     .compound-grid {
@@ -232,10 +291,6 @@ $blue-palette: (
 
     mat-paginator {
       margin: 24px 12px;
-
-      ::ng-deep .mat-paginator-range-label {
-        font-size: 0.9rem;
-      }
     }
   }
 
@@ -267,15 +322,6 @@ $blue-palette: (
 
     mat-paginator {
       margin: 20px 8px;
-
-      ::ng-deep .mat-paginator-range-label {
-        font-size: 0.85rem;
-      }
-
-      ::ng-deep .mat-paginator-navigation {
-        font-size: 1rem;
-        padding: 0 6px;
-      }
     }
   }
 }
