@@ -47,7 +47,9 @@ chemical-compound-app-tino/
 │   │   └── compounds.js
 │   ├── scripts/
 │   │   └── import-csv.js
-│   ├── compounds.csv
+│   │   └── db-creation.js
+│   ├── csv-file/
+│   │   └── compound.csv
 │   ├── index.js
 │   └── package.json
 ├── frontend/
@@ -75,8 +77,12 @@ chemical-compound-app-tino/
    ```sql
    CREATE DATABASE chemical_compounds;
    ```
+   OR
+    ```
+   node scripts/db-creation.js
+   ```
 
-3. **Import Schema and Data**  
+4. **Import Schema and Data**  
    The `import-csv.js` script will set up the database schema and import initial data from `compounds.csv`:
 
    ```bash
@@ -207,6 +213,3 @@ To view, open `Chemical_Compounds_Demo.mp4` in a media player.
   - Verify the database is populated (`node scripts/import-csv.js`).
   - Check backend logs for errors.
 
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
