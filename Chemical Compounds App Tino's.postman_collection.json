@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "f430031f-6950-4214-9d79-d5169af58ca4",
+		"name": "Chemical Compounds App Tino's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39945777"
+	},
+	"item": [
+		{
+			"name": "Get Paginated Compounds",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/compounds?page=1&limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"compounds"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Compound by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/compounds/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"compounds",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Compound",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Test Compound\",\r\n  \"image\": \"https://example.com/images/test.jpg\",\r\n  \"description\": \"A test compound for Postman.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/compounds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"compounds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Compound",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Water Updated\",\r\n  \"image\": \"https://example.com/images/water-updated.jpg\",\r\n  \"description\": \"Updated description for Water molecule.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/compounds/32",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"compounds",
+						"32"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Compound",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/compounds/33",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"compounds",
+						"33"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
