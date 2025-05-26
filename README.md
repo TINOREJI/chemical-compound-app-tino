@@ -2,6 +2,12 @@
 
 A web application for managing and exploring chemical compounds, developed using Angular, Node.js/Express.js, and MySQL. This app allows users to browse a gallery of compounds, view detailed information, add, edit, or delete compounds, and features search, sort, pagination, and a responsive design for seamless use across devices.
 
+This project includes the following deliverables as part of the assignment submission:
+
+- **Source Code**: The complete project code is hosted on GitHub: [https://github.com/TINOREJI/chemical-compound-app-tino](https://github.com/TINOREJI/chemical-compound-app-tino).
+- **API Documentation**: A Postman collection documenting the backend API endpoints is available in the repository: [[Chemical_Compounds_API.postman_collection.json](https://github.com/TINOREJI/chemical-compound-app-tino/blob/main/Chemical_Compounds_API.postman_collection.json).](https://github.com/TINOREJI/chemical-compound-app-tino/blob/main/Chemical%20Compounds%20App%20Tino's.postman_collection.json) 
+- **Screen Recording**: A video demonstrating the app’s functionality (pagination, navigation, edit workflow, and responsive design) is included in the repository: https://drive.google.com/file/d/1FUVbx5HbBpioH2biY_xQkhz7KYTVkhkq/view?usp=drive_link
+
 ## Features
 
 - **Compound Gallery**: View compounds in a grid layout with pagination (10 items per page).
