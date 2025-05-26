@@ -7,6 +7,7 @@ const compoundsRouter = require('./routes/compounds');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/compounds', compoundsRouter);
 

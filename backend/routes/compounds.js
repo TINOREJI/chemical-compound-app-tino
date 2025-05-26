@@ -4,7 +4,14 @@ const { check, validationResult } = require('express-validator');
 const sequelize = require('../config/database');
 const Compound = require('../models/compound-schema')(sequelize);
 
-// GET paginated compounds of size 10 per page
+// Validation middleware
+const validateCompound = [
+  check('name').notEmpty().withMessage('Name is required'),
+  check('image').notEmpty().withMessage('Image URL is required'),
+  check('description').notEmpty().withMessage('Description is required'),
+];
+
+// GET paginated compounds
 router.get('/', async (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
@@ -14,64 +21,72 @@ router.get('/', async (req, res) => {
     const total = await Compound.count();
     res.json({ compounds, total });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('GET /compounds error:', err);
+    res.status(500).json({ error: 'Server error' });
   }
 });
 
-// GET single compound based on ID
+// GET single compound
 router.get('/:id', async (req, res) => {
   try {
     const compound = await Compound.findByPk(req.params.id);
     if (!compound) return res.status(404).json({ error: 'Compound not found' });
     res.json(compound);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('GET /compounds/:id error:', err);
+    res.status(500).json({ error: 'Server error' });
   }
 });
 
-// POST new compound for creation of new compound
-router.post('/', [
-  check('name').notEmpty().withMessage('Name is required'),
-  check('image').notEmpty().withMessage('Image URL is required'),
-  check('description').notEmpty().withMessage('Description is required'),
-], async (req, res) => {
+// POST new compound
+router.post('/', validateCompound, async (req, res) => {
+  //console.log('POST /compounds new data added:', req.body);
   const errors = validationResult(req);
-  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+  if (!errors.isEmpty()) {
+    console.log('Validation errors:', errors.array());
+    return res.status(400).json({ errors: errors.array() });
+  }
   try {
-    const compound = await Compound.create(req.body);
+    const { name, image, description } = req.body; // Restrict fields
+    const compound = await Compound.create({ name, image, description });
     res.status(201).json(compound);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Error creating compound:', err);
+    res.status(500).json({ error: 'Failed to create compound' });
   }
 });
 
-// PUT update compound for updating existing compound using ID
-router.put('/:id', [
-  check('name').notEmpty().withMessage('Name is required'),
-  check('image').notEmpty().withMessage('Image URL is required'),
-  check('description').notEmpty().withMessage('Description is required'),
-], async (req, res) => {
+// PUT update compound
+router.put('/:id', validateCompound, async (req, res) => {
+  //console.log('PUT /compounds/:id updated data:', req.body);
   const errors = validationResult(req);
-  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+  if (!errors.isEmpty()) {
+    console.log('Validation errors:', errors.array());
+    return res.status(400).json({ errors: errors.array() });
+  }
   try {
     const compound = await Compound.findByPk(req.params.id);
     if (!compound) return res.status(404).json({ error: 'Compound not found' });
-    await compound.update(req.body);
+    const { name, image, description } = req.body; // Restrict fields
+    await compound.update({ name, image, description });
     res.json(compound);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Error updating compound:', err);
+    res.status(500).json({ error: 'Failed to update compound' });
   }
 });
 
-// DELETE compound for deleting existing compound using ID
+// DELETE compound
 router.delete('/:id', async (req, res) => {
+  //console.log('DELETE /compounds/:id data deleted:', req.params.id);
   try {
     const compound = await Compound.findByPk(req.params.id);
     if (!compound) return res.status(404).json({ error: 'Compound not found' });
     await compound.destroy();
-    res.json({ message: 'Compound deleted' });
+    res.status(204).send(); // Standard 204 for DELETE
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Error deleting compound:', err);
+    res.status(500).json({ error: 'Failed to delete compound' });
   }
 });
 
