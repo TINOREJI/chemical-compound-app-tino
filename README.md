@@ -193,7 +193,7 @@ chemical-compound-app-tino/
 
 ## Screen Recording
 
-A screen recording showcasing the app’s functionality is included in the repository:
+A screen recording showcasing the app’s functionality is included in the GDrive Link:
 
 - **File**: `Chemical_Compounds_Demo.mp4`
 - **Features Demonstrated**:
