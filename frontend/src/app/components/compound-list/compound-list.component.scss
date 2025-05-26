@@ -1,0 +1,281 @@
+@use '@angular/material' as mat;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+$blue-palette: (
+  50: #e3f2fd,
+  100: #bbdefb,
+  200: #90caf9,
+  300: #64b5f6,
+  400: #42a5f5,
+  500: #2196f3,
+  600: #1e88e5,
+  700: #1976d2,
+  800: #1565c0,
+  900: #0d47a1,
+  contrast: (
+    50: #000,
+    100: #000,
+    200: #000,
+    0: #000,
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff
+  )
+);
+
+.compound-list-container {
+  font-family: 'Montserrat', sans-serif;
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 0 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+
+  .page-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: map-get($blue-palette, 900);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 24px 0;
+  }
+
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1.2rem;
+    color: map-get($blue-palette, 700);
+    margin: 32px;
+  }
+
+  .error, .no-data {
+    text-align: center;
+    font-size: 1.2rem;
+    color: map-get($blue-palette, 700);
+    margin: 32px 0;
+  }
+
+  .error {
+    color: red;
+  }
+
+  .compound-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    padding: 16px;
+  }
+
+  .compound-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    position: relative;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-container {
+      position: relative;
+      height: 200px;
+
+      .compound-image {
+        width: 100%;
+        height: 100%;
+        object-fit:contain;
+        border-radius: 4px 4px 0 0;
+        border-bottom: 3px solid #e0e0e0;
+      }
+
+      .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+        display: flex;
+      }
+    }
+
+    .compound-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: map-get($blue-palette, 900);
+      margin: 20px 20px 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .compound-description {
+      font-size: 0.95rem;
+      color: map-get($blue-palette, 700);
+      margin: 0 16px 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.4;
+    }
+
+    mat-card-actions {
+      display: flex;
+      justify-content: flex-end;
+      padding: 12px 16px;
+
+      button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: map-get($blue-palette, 900);
+        color: #fff;
+        &:hover {
+          background: map-get($blue-palette, 700);
+        }
+
+        mat-icon {
+          font-size: 16px;
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+  }
+
+  mat-paginator {
+    margin: 32px 16px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+
+    /*::ng-deep .mat-paginator-container {
+      justify-content: center;
+      min-height: 40px;
+    }
+
+    ::ng-deep .mat-paginator-page-size {
+      display: none !important;
+    }
+
+    ::ng-deep .mat-paginator-range-label {
+      font-size: 1rem;
+      color: map-get($blue-palette, 900);
+      margin: 0 16px;
+    }
+
+    ::ng-deep .mat-paginator-navigation {
+      color: map-get($blue-palette, 600);
+      font-size: 1.2rem;
+      padding: 0 8px;
+  
+      &:hover {
+        color: map-get($blue-palette, 700);
+        background: #f0f4f8;
+        border-radius: 4px;
+      }
+    }
+
+    ::ng-deep .mat-paginator-navigation-disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+
+    ::ng-deep .mat-paginator-navigation-first,
+    ::ng-deep .mat-paginator-navigation-last {
+      font-size: 1.2rem;
+    }*/
+  }
+
+  @media only screen and (max-width: 767px) {
+    margin: 16px auto;
+    padding: 12px;
+
+    .page-title {
+      font-size: 1.6rem;
+      margin: 20px 0;
+    }
+
+    .compound-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .compound-card {
+      .image-container {
+        height: 160px;
+      }
+
+      .compound-name {
+        font-size: 1.1rem;
+      }
+
+      .compound-description {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 2;
+      }
+    }
+
+    mat-paginator {
+      margin: 24px 12px;
+
+      ::ng-deep .mat-paginator-range-label {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .compound-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .compound-card {
+      .image-container {
+        height: 140px;
+      }
+
+      .compound-name {
+        font-size: 1rem;
+      }
+
+      .compound-description {
+        font-size: 0.85rem;
+      }
+
+      mat-card-actions {
+        button {
+          font-size: 0.9rem;
+          padding: 8px 12px;
+        }
+      }
+    }
+
+    mat-paginator {
+      margin: 20px 8px;
+
+      ::ng-deep .mat-paginator-range-label {
+        font-size: 0.85rem;
+      }
+
+      ::ng-deep .mat-paginator-navigation {
+        font-size: 1rem;
+        padding: 0 6px;
+      }
+    }
+  }
+}

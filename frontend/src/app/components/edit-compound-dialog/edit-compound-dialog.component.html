@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Edit Compound</h2>
+    <mat-dialog-content>
+      <form [formGroup]="editForm">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter compound name">
+          <mat-error *ngIf="editForm.get('name')?.hasError('required')">
+            Name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="5" placeholder="Enter compound description"></textarea>
+          <mat-error *ngIf="editForm.get('description')?.hasError('required')">
+            Description is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Image URL</mat-label>
+          <input matInput formControlName="image" placeholder="Enter image URL (optional)">
+        </mat-form-field>
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="editForm.invalid">
+        Save
+      </button>
+    </mat-dialog-actions>

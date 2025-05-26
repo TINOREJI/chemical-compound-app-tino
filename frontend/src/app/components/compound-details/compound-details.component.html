@@ -1,0 +1,29 @@
+<div class="compound-details-container" *ngIf="!loading && !error" @fadeIn>
+  <div class="details-header">
+    <h1 class="page-title">Compound Details</h1>
+  </div>
+  <mat-card class="compound-card">
+    <div class="details-layout">
+      <div class="image-section">
+        <img [src]="compound?.image || '/assets/images/defaultImg.png'"
+             alt="{{ compound?.name }}"
+             class="compound-image"
+             (error)="handleImageError($event)">
+      </div>
+      <div class="info-section">
+        <div class="title-container">
+          <h1 class="compound-name">{{ compound?.name }}</h1>
+        </div>
+        <hr class="divider">
+        <p class="compound-description">{{ compound?.description }}</p>
+        <button mat-raised-button class="back-button" (click)="goBack()" @buttonHover>
+          <mat-icon class="button-icon">arrow_back</mat-icon> Back to Gallery
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>
+<div *ngIf="loading" class="loading">
+  <mat-spinner diameter="20"></mat-spinner> Loading Compound...
+</div>
+<div *ngIf="error" class="error">{{ error }}</div>

@@ -1,0 +1,45 @@
+@use '@angular/material' as mat;
+
+// Include the core Material styles
+@include mat.core();
+
+// Import Montserrat font from Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+// Define custom blue palette
+$blue-palette: (
+  50: #e3f2fd,
+  100: #bbdefb,
+  200: #90caf9,
+  300: #64b5f6,
+  400: #42a5f5,
+  500: #2196f3,
+  600: #1e88e5,
+  700: #1976d2,
+  800: #1565c0,
+  900: #0d47a1,
+  contrast: (
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #000,
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff
+  )
+);
+
+// Basic HTML and body styles
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #f8fafc;
+}
+
+body {
+  margin: 0;
+}

@@ -1,0 +1,39 @@
+<div class="compound-list-container">
+  <h1 class="page-title">Chemical Compounds</h1>
+  <div *ngIf="loading" class="loading">
+    <mat-spinner diameter="20"></mat-spinner> Loading Compounds...
+  </div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="!loading && !error && compounds.length === 0" class="no-data">No compounds found.</div>
+  <div class="compound-grid" *ngIf="!loading && !error && compounds.length > 0" @fadeIn>
+    <mat-card *ngFor="let compound of compounds" class="compound-card">
+      <div class="image-container">
+        <img mat-card-image
+             src="{{ compound.image || 'assets/images/placeholder.png' }}"
+             alt="{{ compound.name }}"
+             class="compound-image">
+        <div class="image-overlay">
+        </div>
+      </div>
+      <mat-card-content>
+        <h2 class="compound-name" title="{{ compound.name }}">{{ compound.name }}</h2>
+        <p class="compound-description" title="{{ compound.description }}">{{ compound.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [routerLink]="['/compound', compound.id]">
+          <mat-icon>visibility</mat-icon> View Details
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <mat-paginator
+    *ngIf="!loading && !error && compounds.length > 0"
+    [length]="totalCompounds"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [hidePageSize]="true"
+    showFirstLastButtons
+    (page)="onPageChange($event)"
+    aria-label="Select page">
+  </mat-paginator>
+</div>

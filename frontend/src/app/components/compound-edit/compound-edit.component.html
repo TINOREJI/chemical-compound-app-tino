@@ -1,0 +1,75 @@
+<div class="compound-edit-container" *ngIf="!loading && !error" @fadeIn>
+  <div class="edit-header">
+    <h1 class="page-title">Manage Compounds</h1>
+  </div>
+  <div class="table-actions">
+    <button mat-raised-button class="add-button" (click)="onAdd()" @buttonHover>
+      <mat-icon>add</mat-icon> Add New Compound
+    </button>
+    <button mat-raised-button class="back-button" (click)="goBack()" @buttonHover>
+      <mat-icon>arrow_back</mat-icon> Back to Gallery
+    </button>
+  </div>
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element" [title]="element.description">
+          {{element.description | slice:0:50}}{{element.description.length > 50 ? '...' : ''}}
+        </td>
+      </ng-container>
+
+      <!-- Image Column -->
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef> Image </th>
+        <td mat-cell *matCellDef="let element">
+          <img [src]="element.image || '/assets/images/defaultImg.png'"
+               alt="{{element.name}}"
+               class="table-image">
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="onEdit(element)" title="Edit">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onDelete(element)" title="Delete">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator
+      [length]="totalCompounds"
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      [hidePageSize]="true"
+      showFirstLastButtons
+      (page)="onPageChange($event)"
+      aria-label="Select page">
+    </mat-paginator>
+  </div>
+</div>
+<div *ngIf="loading" class="loading">
+  <mat-spinner diameter="20"></mat-spinner> Loading Compounds...
+</div>
+<div *ngIf="error" class="error">{{ error }}</div>
